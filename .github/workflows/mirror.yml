@@ -1,0 +1,23 @@
+name: mirror
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+  
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Mercurial and hg-git
+        shell: bash
+        run: sudo apt-get install mercurial mercurial-git --no-install-recommends -y
+      - name: Pull and push
+        shell: bash
+        run: |
+          hg clone https://hg.code.sf.net/p/scintilla/code
+          pushd code
+          hg push ../
+          popd
+          git push
