@@ -15,7 +15,7 @@ jobs:
         shell: bash
         run: |
           echo '[auth]' > ~/.hgrc
-          echo 'github.prefix = git+https://github.com' >> ~/.hgrc
+          echo 'github.prefix = https://github.com' >> ~/.hgrc
           echo 'github.username = orbitalquark' >> ~/.hgrc
           echo 'github.password = ${{ secrets.PAT }}' >> ~/.hgrc
       - name: Pull and push
