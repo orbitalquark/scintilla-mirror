@@ -24,6 +24,8 @@ jobs:
         shell: bash
         run: |
           hg clone https://github.com/orbitalquark/scintilla-mirror2.git
-          pushd scintilla-mirror2
-          hg pull http://hg.code.sf.net/p/scintilla/code
+          hg clone http://hg.code.sf.net/p/scintilla/code
+          pushd code
+          hg push ../scintilla-mirror2
+          popd
           hg push
