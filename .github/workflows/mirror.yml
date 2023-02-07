@@ -8,16 +8,15 @@ jobs:
   mirror:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
       - name: Install Mercurial and hg-git
         shell: bash
         run: sudo apt-get install mercurial mercurial-git --no-install-recommends -y
       - name: Pull and push
         shell: bash
         run: |
+          git clone https://orbitalquark:${{ secrets.PAT }}@github.com/orbitalquark/scintilla-mirror
           hg clone http://hg.code.sf.net/p/scintilla/code
           pushd code
-          hg push ..
+          hg push ../scintilla-mirror
           popd
           git push
