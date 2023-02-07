@@ -11,13 +11,19 @@ jobs:
       - name: Install Mercurial and hg-git
         shell: bash
         run: sudo apt-get install mercurial mercurial-git --no-install-recommends -y
+      - name: Create hgrc
+        shell: bash
+        run: |
+          echo > ~/.hgrc << EOF
+          [auth]
+          github.prefix = https://github.com
+          github.username = orbitalquark
+          github.password = ${{ secrets.PAT }}
+          EOF
       - name: Pull and push
         shell: bash
         run: |
-          git clone https://orbitalquark:${{ secrets.PAT }}@github.com/orbitalquark/scintilla-mirror.git
-          hg clone http://hg.code.sf.net/p/scintilla/code
-          pushd code
-          ls -al ../scintilla-mirror
-          hg push ../scintilla-mirror
-          popd
-          git push
+          hg clone https://github.com/orbitalquark/scintilla-mirror2.git
+          pushd scintilla-mirror2
+          hg pull http://hg.code.sf.net/p/scintilla/code
+          hg push
