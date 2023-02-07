@@ -18,6 +18,6 @@ jobs:
         run: |
           hg clone http://hg.code.sf.net/p/scintilla/code
           pushd code
-          hg push ../
+          hg push ..
           popd
           git push
