@@ -16,7 +16,7 @@ jobs:
       - name: Pull and push
         shell: bash
         run: |
-          hg clone https://hg.code.sf.net/p/scintilla/code
+          hg clone http://hg.code.sf.net/p/scintilla/code
           pushd code
           hg push ../
           popd
