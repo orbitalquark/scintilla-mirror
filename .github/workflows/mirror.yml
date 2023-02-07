@@ -28,5 +28,5 @@ jobs:
           hg clone http://hg.code.sf.net/p/scintilla/code
           pushd code
           hg bookmark default_git
-          hg push https://github.com/orbitalquark/scintilla-mirror2.git
+          hg push https://github.com/orbitalquark/scintilla-mirror.git
           popd
