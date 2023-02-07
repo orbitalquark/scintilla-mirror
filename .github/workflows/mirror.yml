@@ -17,6 +17,7 @@ jobs:
           git clone https://orbitalquark:${{ secrets.PAT }}@github.com/orbitalquark/scintilla-mirror2.git
           hg clone http://hg.code.sf.net/p/scintilla/code
           pushd code
+          ls -al ../*
           hg push ../scintilla-mirror2
           popd
           git push
