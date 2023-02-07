@@ -14,14 +14,16 @@ jobs:
       - name: Create hgrc
         shell: bash
         run: |
-          echo '[auth]' > ~/.hgrc
+          echo '[extensions]' > ~/.hgrc
+          echo 'hggit =' >> ~/.hgrc
+          echo '[auth]' >> ~/.hgrc
           echo 'github.prefix = github.com' >> ~/.hgrc
           echo 'github.username = orbitalquark' >> ~/.hgrc
           echo 'github.password = ${{ secrets.PAT }}' >> ~/.hgrc
       - name: Pull and push
         shell: bash
         run: |
-          hg clone https://orbitalquark:${{ secrets.PAT }}@github.com/orbitalquark/scintilla-mirror2.git
+          hg clone https://github.com/orbitalquark/scintilla-mirror2.git
           pushd scintilla-mirror2
           hg pull http://hg.code.sf.net/p/scintilla/code
           hg push
