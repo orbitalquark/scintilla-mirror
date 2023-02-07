@@ -14,7 +14,7 @@ jobs:
       - name: Pull and push
         shell: bash
         run: |
-          git clone https://orbitalquark:${{ secrets.PAT }}@github.com/orbitalquark/scintilla-mirror
+          git clone https://orbitalquark:${{ secrets.PAT }}@github.com/orbitalquark/scintilla-mirror.git
           hg clone http://hg.code.sf.net/p/scintilla/code
           pushd code
           hg push ../scintilla-mirror
