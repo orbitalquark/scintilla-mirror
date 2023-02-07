@@ -16,6 +16,8 @@ jobs:
         run: |
           echo '[extensions]' > ~/.hgrc
           echo 'hggit =' >> ~/.hgrc
+          echo '[git]' >> ~/.hgrc
+          echo 'branch_bookmark_suffix = _git' >> ~/.hgrc
           echo '[auth]' >> ~/.hgrc
           echo 'github.prefix = github.com' >> ~/.hgrc
           echo 'github.username = orbitalquark' >> ~/.hgrc
@@ -25,6 +27,6 @@ jobs:
         run: |
           hg clone http://hg.code.sf.net/p/scintilla/code
           pushd code
-          hg bookmark default
+          hg bookmark default_git
           hg push https://github.com/orbitalquark/scintilla-mirror2.git
           popd
