@@ -14,13 +14,10 @@ jobs:
       - name: Create hgrc
         shell: bash
         run: |
-          echo > ~/.hgrc << EOF
-          [auth]
-          github.prefix = https://github.com
-          github.username = orbitalquark
-          github.password = ${{ secrets.PAT }}
-          EOF
-          cat ~/.hgrc
+          echo '[auth]' > ~/.hgrc
+          echo 'github.prefix = https://github.com' >> ~/.hgrc
+          echo 'github.username = orbitalquark' >> ~/.hgrc
+          echo 'github.password = ${{ secrets.PAT }}' >> ~/.hgrc
       - name: Pull and push
         shell: bash
         run: |
