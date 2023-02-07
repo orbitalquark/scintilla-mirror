@@ -29,7 +29,5 @@ jobs:
           pushd code
           hg bookmark default_git
           url="https://github.com/orbitalquark/scintilla-mirror.git"
-          if [ "`hg out -b default $url | grep -o 'no changes found'`" != "no changes found" ]; then
-            hg push $url
-          fi
+          if [ -z "`hg out -b default $url | grep -o 'no changes found'`" ]; then hg push $url; fi
           popd
