@@ -8,16 +8,26 @@ jobs:
   mirror:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
       - name: Install Mercurial and hg-git
         shell: bash
         run: sudo apt-get install mercurial mercurial-git --no-install-recommends -y
-      - name: Pull and push
+      - name: Create hgrc
         shell: bash
         run: |
-          hg clone https://hg.code.sf.net/p/scintilla/code
+          echo '[extensions]' > ~/.hgrc
+          echo 'hggit =' >> ~/.hgrc
+          echo '[git]' >> ~/.hgrc
+          echo 'branch_bookmark_suffix = _git' >> ~/.hgrc
+          echo '[auth]' >> ~/.hgrc
+          echo 'github.prefix = github.com' >> ~/.hgrc
+          echo 'github.username = orbitalquark' >> ~/.hgrc
+          echo 'github.password = ${{ secrets.PAT }}' >> ~/.hgrc
+      - name: Push
+        shell: bash
+        run: |
+          hg clone http://hg.code.sf.net/p/scintilla/code
           pushd code
-          hg push ../
+          hg bookmark default_git
+          url="https://github.com/orbitalquark/scintilla-mirror.git"
+          if [ -z "`hg out -b default $url | grep -o 'no changes found'`" ]; then hg push $url; fi
           popd
-          git push
