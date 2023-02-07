@@ -11,13 +11,10 @@ jobs:
       - name: Install Mercurial and hg-git
         shell: bash
         run: sudo apt-get install mercurial mercurial-git --no-install-recommends -y
-      - name: Pull and push
+      - name: Push
         shell: bash
         run: |
-          git clone https://orbitalquark:${{ secrets.PAT }}@github.com/orbitalquark/scintilla-mirror2.git
           hg clone http://hg.code.sf.net/p/scintilla/code
           pushd code
-          ls -al ../*
-          hg push ../scintilla-mirror2
+          hg push https://orbitalquark:${{ secrets.PAT }}@github.com/orbitalquark/scintilla-mirror2.git
           popd
-          git push
