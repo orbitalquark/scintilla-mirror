@@ -326,6 +326,7 @@ $(DIR_O)/Indicator.obj: \
 	../src/Debugging.h \
 	../src/Geometry.h \
 	../src/Platform.h \
+	../src/CharacterType.h \
 	../src/Indicator.h \
 	../src/XPM.h
 $(DIR_O)/KeyMap.obj: \
