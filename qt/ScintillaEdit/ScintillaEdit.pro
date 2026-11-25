@@ -13,7 +13,7 @@ TEMPLATE = lib
 CONFIG += lib_bundle
 CONFIG += c++20
 
-VERSION = 5.6.9
+VERSION = 5.7.0
 
 SOURCES += \
     ScintillaEdit.cpp \
